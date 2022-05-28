@@ -13,11 +13,3 @@ fn main() {
     .run(tauri::generate_context!())
     .expect("error while running tauri application");
 }
-
-#[derive(Clone, serde::Deserialize, serde::Serialize)]
-struct ConnectionSettings {
-    hostname: String,
-    username: String,
-    password: String,
-    dbname: String
-}
