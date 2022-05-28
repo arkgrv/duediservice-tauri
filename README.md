@@ -1,7 +1,7 @@
 # Due Di Service - Customer Manager
 
 ## Customer Manager - a cosa serve
-Customer Manager è una applicazione Electron creata per gestire i clienti di Due Di Service, officina / carrozzeria / concessionaria auto presso Varazze (SV).
+Customer Manager è una applicazione Tauri creata per gestire i clienti di Due Di Service, officina / carrozzeria / concessionaria auto presso Varazze (SV).
 
 Si tratta di un applicativo proprietario, ma sotto licenza MIT, che non sarà rilasciato a terze parti. È da considerarsi ad uso prevalentemente interno per l'officina anche se parte del codice che compone la piattaforma potrebbe essere utilizzato per la gestione di altre attività.
 
