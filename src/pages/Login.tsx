@@ -1,5 +1,4 @@
 import { invoke } from '@tauri-apps/api/tauri';
-
 import SettingsPopup from './SettingsPopup';
 
 import logo from '../assets/logo.png';
@@ -76,7 +75,7 @@ const Login = () => {
                   className="mr-2 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded shadow-lg hover:shadow-xl transition duration-200 w-full"
                   type="button"
                   onClick={() => {
-                      invoke('exit_app');
+                    invoke('exit_app');
                   }}
                 >
                   Esci

@@ -3,7 +3,7 @@ struct ConnectionSettings {
     hostname: String,
     username: String,
     password: String,
-    dbname: String
+    database: String
 }
 
 use preferences::{AppInfo, PreferencesMap, Preferences};
@@ -21,7 +21,7 @@ pub fn save_connection_settings(settings: String) {
     preferences.insert("conn_hostname".into(), settings.hostname);
     preferences.insert("conn_username".into(), settings.username);
     preferences.insert("conn_password".into(), settings.password);
-    preferences.insert("conn_dbname".into(), settings.dbname);
+    preferences.insert("conn_dbname".into(), settings.database);
 
     // Save the preferences
     preferences.save(&APP_INFO, PREFS_KEY).unwrap();
@@ -40,7 +40,7 @@ pub fn load_connection_settings() -> String {
                 hostname: "".into(),
                 username: "".into(),
                 password: "".into(),
-                dbname: "".into()
+                database: "".into()
             }).unwrap();
         }
     };
@@ -49,14 +49,14 @@ pub fn load_connection_settings() -> String {
     let hostname = preferences.get("conn_hostname").unwrap().clone();
     let username = preferences.get("conn_username").unwrap().clone();
     let password = preferences.get("conn_password").unwrap().clone();
-    let dbname = preferences.get("conn_dbname").unwrap().clone();
+    let database = preferences.get("conn_dbname").unwrap().clone();
 
     // Return the settings
     let settings = ConnectionSettings {
         hostname,
         username,
         password,
-        dbname
+        database
     };
 
     // Return the settings

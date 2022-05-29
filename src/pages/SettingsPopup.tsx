@@ -1,19 +1,20 @@
 import { useState } from 'react';
 import { MdSettings } from 'react-icons/md';
-import { invoke } from '@tauri-apps/api/tauri';
-import { ConnectionSettings } from '../utils/settings';
+import { ConnectionSettings, defaultSettings } from '../utils/settings';
+import { invoke } from '@tauri-apps/api';
 
-const settings = new ConnectionSettings();
-
-// Load settings
+const settings = defaultSettings;
 invoke('load_connection_settings').then((connSettings) => {
-    settings.fromJSONString(connSettings as string);
+  const s = JSON.parse(connSettings as string) as ConnectionSettings;
+  settings.hostname = s.hostname;
+  settings.username = s.username;
+  settings.password = s.password;
+  settings.database = s.database;
 });
 
 const SettingsPopup = () => {
     const [showSettings, setShowSettings] = useState(false);
     
-  
     return (
       <>
         <button
@@ -43,10 +44,8 @@ const SettingsPopup = () => {
                         type="text"
                         id="settings-hostname-input-field"
                         className="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-blue-600 transition duration-500 px-3 pb-3"
-                        onChange={(e) => {
-                            settings.setHostname(e.target.value);
-                        }}
-                        defaultValue={settings.getHostname()}
+                        onChange={(e) => settings.hostname = e.target.value}
+                        defaultValue={settings.hostname}
                       />
                     </div>
 
@@ -58,10 +57,8 @@ const SettingsPopup = () => {
                         type="text"
                         id="settings-username-input-field"
                         className="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-blue-600 transition duration-500 px-3 pb-3"
-                        onChange={(e) => {
-                            settings.setUsername(e.target.value);
-                        }}
-                        defaultValue={settings.getUsername()}
+                        onChange={(e) => settings.username = e.target.value}
+                        defaultValue={settings.username}
                       />
                     </div>
                     
@@ -73,10 +70,8 @@ const SettingsPopup = () => {
                         type="password"
                         id="settings-password-input-field"
                         className="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-blue-600 transition duration-500 px-3 pb-3"
-                        onChange={(e) => {
-                            settings.setPassword(e.target.value);
-                        }}
-                        defaultValue={settings.getPassword()}
+                        onChange={(e) => settings.password = e.target.value}
+                        defaultValue={settings.password}
                       />
                     </div>
 
@@ -88,10 +83,8 @@ const SettingsPopup = () => {
                         type="text"
                         id="settings-dbname-input-field"
                         className="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-blue-600 transition duration-500 px-3 pb-3"
-                        onChange={(e) => {
-                            settings.setDbname(e.target.value);
-                        }}
-                        defaultValue={settings.getDbname()}
+                        onChange={(e) => settings.database = e.target.value}
+                        defaultValue={settings.database}
                       />
                     </div>
 
